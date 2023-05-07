@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/diner_info.css" type="text/css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="basic-box-center">
+    <div class="tool-bar">
+      <a href="/">메인 화면으로</a>
+      <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
+      <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+      <a href="/restaurant">근처 식당</a>
+      <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
+    </div>
+  </div>
+
+  <div class="restaurant-info">
+    <h1 class="name"><%= diner_data.name %></h1>
+    <p class="grade"><%= diner_data.grade %></p>
+    <hr style="width: 94%; height: 1px;">
+    <div class="comment"><%= diner_data.comment %></div>
+  </div>
+  <% if(!comments){ %>
+    <p>로그인 후 첫 리뷰를 작성해보세요! </p>
+  <% } else { %>
+    <% comments.forEach(function(comment) { %>
+      <div>title : <%= comment.title %></div>
+      <div>author : <%= comment.author %></div>
+      <div>comments : <%= comment.comments %></div>
+      <% if(userid == comment.web_user_id){ %>
+      <form action="/deleteReview?cid=<%= comment.idcomment %>&&did=<%= diner_data.id %>" method="post"><button type="submit">리뷰 삭제</button></form>
+      <% } %>
+    <% }); %>
+  <% } %>
+
+  <% if(userid != undefined ){ %>
+  <a href="/newReview/<%= diner_data.id %>">리뷰 작성하기</a>
+  <% } else{ %>
+  <a href="/login">리뷰 작성하기</a>
+  <% } %>
+  <a href="/">메인 화면으로</a>
+  <a href="/restaurant">이전으로</a>
+</body>
+</html>

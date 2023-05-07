@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+  </head>
+  <body>
+    <% if( user!=undefined ){ %>
+    <h1 class="welcome">환영합니다 <%= user %>님</h1>
+    <% } %>
+    <div class="basic-box-center">
+      <div class="tool-bar">
+        <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
+        <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+        <a href="/restaurant">근처 식당</a>
+        <% if( user==undefined ){ %>
+        <a href="/login">로그인</a>
+        <% } else { %>
+        <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
+        <form action="/logout">
+          <button type="submit" class="logout">로그아웃</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+    <div class="img-search-box">
+      <div class="main-img"><img src="../img/food.png" alt="main-img" /></div>
+      <div class="search-box">
+        <form id="search-form" action="/search">
+          <div class="search-txt-box"><input type="text" id="name" class="search-txt" name="name" placeholder="식당 이름을 입력하세요."/></div>
+          <button type="submit" id="search-button">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="default-grey">
+      <br>
+
+      <div class="main-tools-box">
+        <div class="main-tools-txt">요즘 핫한 맛집이에요.</div>
+        <hr>
+        <div class="main-tools">
+          <% for(var i=0; i<3; i++){ %>
+          <a class="content-box" href="/diner_info/<%= prefer[i].id %>">
+            <div class="content-box-title">
+              <div> <%= prefer[i].name %> </div>
+              <div> 평점 : <%= prefer[i].grade %> </div>
+            </div>
+            <img src="../img/main-img.jpg" alt="food" class="main-tools-img">
+          </a>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="main-tools-box">
+        <div class="main-tools-txt">리뷰들을 확인해보세요.</div>
+        <hr>
+        <div class="main-tools">
+          <% for(var i=0; i<3; i++){ %>
+            <% if(review.length <= i) break; %>
+            <a class="content-box" href="/diner_info/<%= review[i].restaurant_id %>">
+              <div class="content-box-title">
+                <div> 글쓴이 : <%= review[i].author %></div>
+                <div> 제목 : <%= review[i].title %> </div>
+              </div>
+              <hr style="
+              position:relative;
+              top:2vh;
+              height:1px;
+              color: rgb(177, 177, 177);">
+              <div class="content-box-content">
+                <%= review[i].comments %>
+              </div>
+            </a>
+            <% } %>
+        </div>
+      </div>
+
+      <div class="main-tools-box">
+        <div class="main-tools-txt">근처 식당들을 확인해보세요.</div>
+        <hr>
+        <div class="main-tools">
+          <% for(var i=0; i<3; i++){ %>
+            <a class="content-box" href="/diner_info/<%= near[i].id %>">
+              <div class="content-box-title">
+                <div> <%= near[i].name %> </div>
+                <div> 평점 : <%= near[i].grade %> </div>
+              </div>
+              <img src="../img/main-img.jpg" alt="food" class="main-tools-img">
+            </a>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="my-info">
+        <div class="my-img"><img src="../img/icon.png" alt="my-img" /></div>
+        <div class="my-info-real">
+          <span>작성한 리뷰 수 : </span>
+          <span>보유 포인트 : </span>
+        </div>
+      </div>
+      <div class="bottom"></div>
+      <ul id="list"></ul>
+    </div>
+    <script src="search.js"></script>
+    <div class="default-black">
+      default
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" type="text/css" />
+    <title>login</title>
+  </head>
+  <body>
+    <div class="basic-box-center">
+      <div class="tool-bar">
+        <a href="/">메인 화면으로</a>
+        <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
+        <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+        <a href="/restaurant">근처 식당</a>
+        <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
+      </div>
+    </div>
+    
+    <h1 class="title">로그인</h1>
+
+    <form method="post" action="/loginProcess" class="login-info">
+      <div class="input-box">
+        <input type="text" name="id" placeholder="아이디를 입력하세요" class="input"/>
+        <input type="password" name="password" placeholder="비밀번호를 입력하세요" class="input"/>
+        <input type="submit" value="로그인"  class="input submit-button"/>
+      </div>
+    </form>
+    <% if(success==0){ %>
+      <div class="failed">
+        <p>아이디 / 비밀번호를 확인하세요.</p>
+      </div>
+    <% } %>
+    <hr>
+
+    <div class="sign-up-box">
+      <a href="/signup" class="sign-up">회원가입</a>
+    </div>
+
+  </body>
+</html>

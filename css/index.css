@@ -1,0 +1,298 @@
+@import url(reset.css);
+@import url(basic.css);
+@import url(tool-bar.css);
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.welcome{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  top: 7%;
+
+  font-family: 'SUITE-Regular';
+  font-size: 150%;
+  font-weight: bolder;
+  color:#c73b5c;
+}
+
+.img-search-box{
+  position: relative;
+
+  width: 100%;
+  height: 60vh;
+
+	margin: 10px auto;
+	border: 1px solid #000000;
+}
+
+.main-img{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  background-color: black;
+}
+
+.main-img > img{
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.5;
+}
+
+.search-box{
+  position: absolute;
+	top: 70%;
+	left: 70%;
+
+  vertical-align: middle;
+
+  width: 100%;
+  height: 13%;
+
+  padding: 5px 10px;
+	text-align: center;
+	
+	transform: translate( -50%, -50% );
+}
+
+.search-box > form{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.search-txt-box{
+  position: relative;
+  left: 3%;
+
+  width: 50%;
+  height: 100%;
+
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 71px 71px 71px 71px;
+  -webkit-border-radius: 71px 71px 71px 71px;
+  -moz-border-radius: 71px 71px 71px 71px;
+
+  box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+
+  border: 3px solid #000000;
+}
+
+.search-txt{
+  position: relative;
+  left: 3%;
+
+  width: 70%;
+  height: 100%;
+
+  border:none;
+}
+
+#search-button{
+  position: relative;
+  right: 3%;
+
+  width: 10%;
+  height: 100%;
+
+  border: 3px solid #000000;
+
+  border-radius: 71px 71px 71px 71px;
+  -webkit-border-radius: 71px 71px 71px 71px;
+  -moz-border-radius: 71px 71px 71px 71px;
+
+  box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  }
+
+.main-tools-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+  left: 5%;
+  
+  width: 90%;
+  height: 70vh;
+
+  margin: 5% 0 10% 0;
+
+  background-color: white;
+
+
+  border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  -moz-border-radius: 40px 40px 40px 40px;
+
+  box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+}
+
+.main-tools-txt{
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  right: 10%;
+  top: 1%;
+  
+  width: 60%;
+  height: 20%;
+
+  font-size: 120%;
+  font-family: 'SUITE-Regular';
+}
+
+.main-tools{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap:3.5%;
+
+  width: 80%;
+  height: 90%;
+
+  margin: 0 0 3% 0; 
+  background-color: rgb(255, 255, 255);
+}
+
+.content-box{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1vh;
+
+  width: 30%;
+  height: 70%;
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  -moz-border-radius: 40px 40px 40px 40px;
+
+  box-shadow: 5px 5px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 5px 5px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 5px 5px 41px 0px rgba(0,0,0,0.49);
+
+  text-decoration: none;
+}
+
+.content-box-title{
+  display: flex;  
+  flex-direction: column;
+  gap: 1vh;
+
+  position: relative;
+  top: 2vh;
+
+  text-decoration: none;
+  font-family: 'SUITE-Regular';
+  font-size: 120%;
+  font-weight: bold;
+  color: black;
+}
+
+.content-box-content{
+  position: relative;
+  top: 2vh;
+
+  color: black;
+  margin: 5% 0 0 0;
+}
+
+.main-tools-img{
+  position: relative;
+  top: 2vh;
+
+  width: 80%;
+  height: 50%;
+
+  border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+}
+
+.tools-button:hover{
+  background-color: #ff9100;
+  color:#000000;
+  transition: 0.5s;
+}
+
+.main-tools-img{
+  position: relative;
+  bottom: 1vh;
+
+  width: 80%;
+  height: 65%;
+
+  margin: 1vh 0 0 0;
+}
+
+.my-info{
+  display: flex;
+
+  position: relative;
+  left: 5%;
+  
+  width: 70%;
+  height: 50vh;
+
+  margin: 3% 0 0 0;
+
+  background-color: white;
+
+  border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  -moz-border-radius: 40px 40px 40px 40px;
+
+  box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+}
+
+.my-img{
+  width: 30%;
+  height: 55%;
+
+  margin: 5% 5% 0 5%;
+}
+
+.my-img > img{
+  width: 100%;
+  height: 100%;
+
+  border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+
+  box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.49);
+}
+
+.my-info-real{
+  display: flex;
+  flex-direction: column;
+  gap: 20%;
+
+  margin: 5% 0 0 0;
+
+  font-family: 'SUITE-Regular';
+  font-size: 130%;
+  font-weight: 700;
+}

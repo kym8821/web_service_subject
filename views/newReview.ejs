@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>new review</title>
+</head>
+<body>
+  <h1><%= diner_data.name %> 리뷰 </h1>
+  <form action="/saveComment/<%= diner_data.id %>" method="post">
+    <div>제목 : <input type="text" name="title"></div>
+    <div>내용 : <input type="text" name="content"></div>
+    <button type="submit">제출</button>
+  </form>
+</body>
+</html>

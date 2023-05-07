@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/restaurant.css" type="text/css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="basic-box-center">
+    <div class="tool-bar">
+      <a href="/">메인 화면으로</a>
+      <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
+      <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+      <a href="/restaurant">근처 식당</a>
+      <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
+    </div>
+  </div>
+
+  <h1 class="title">식당 목록</h1>
+
+  <div class="prefer-diner">
+    <div class="prefer-diner-title"># 인기 식당 </div>
+    <div class="prefer-diner-content-box">
+    <% data.forEach(function(item, data){ %>
+      <% if(item.grade>=4){ %>
+        <a class="prefer-diner-content" href="/diner_info/<%= item.id %>">
+          <div class="diner-info"><%= item.name %></div>
+          <div class="diner-info">평점 : <%= item.grade %></div>
+          <img src="../img/main-img.jpg" alt="food-img" class="diner-img">
+        </a>
+      <% } %>
+    <% }) %>
+    </div>
+  </div>
+  <div class="diner-list-box">
+    <p class="diner-list-title"># 식당 목록 </p>
+    <% for(var i=0; i<10; i++){ %>
+      <% if( i>=data.length ) {break;} %>
+      <a href="/diner_info/<%= data[i].id %>" class="diner-list">
+        <img src="../img/main-img.jpg" alt="food-img" class="normal-diner-img">
+        <div class="diner-list-content">
+          <div class="dlc-title"><%= data[i].name %></div>
+          <div class="dlc-title"><%= data[i].grade %></div><br>
+          <div class="dlc-comment"><%= data[i].comment %></div>
+        </div>
+      </a>
+    <% } %>
+  </div>
+</body>
+</html>

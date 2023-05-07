@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+    <link rel="stylesheet" href="../css/index.css" type="text/css" />
+  </head>
+  <body>
+    <div class="basic-box-center">
+      <div class="tool-bar">
+        <a href="shop.html">포인트 상점</a>
+        <a href="reviews.html">리뷰 게시판</a>
+        <a href="near_food.html">근처 식당</a>
+        <a href="mypage.html">내 정보</a>
+        <a href="login.html">로그인</a>
+      </div>
+    </div>
+    <div class="img-search-box">
+      <div class="main-img"><img src="../img/food.png" alt="main-img" /></div>
+      <div class="search-box">
+        <form id="search-form" action="search.html">
+          <input type="text" id="name" class="search-txt" name="name" />
+          <button type="submit" id="search-button">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="default-grey">
+      <br />
+      <div class="main-tools-box">
+        <div class="main-tools-txt">나에게 맞는 식당을 확인해보세요!</div>
+        <div class="main-tools">
+          <form action="restaurant.html">
+            <button class="tools-button" type="submit">
+              <div>위 사진이 마음에 드나요?</div>
+              <hr />
+              <img src="../img/good.png" alt="good" class="main-tools-img" />
+            </button>
+          </form>
+          <form action="reviews.html">
+            <button class="tools-button" type="submit">
+              <div>최근 리뷰를 확인해보세요!</div>
+              <hr />
+              <img
+                src="../img/comment.png"
+                alt="comment"
+                class="main-tools-img"
+              />
+            </button>
+          </form>
+          <form action="near_food.html">
+            <button class="tools-button" type="submit">
+              <div>근처 식당을 확인하세요!</div>
+              <hr />
+              <img src="../img/map.png" alt="map" class="main-tools-img" />
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="my-info">
+        <div class="my-img"><img src="../img/icon.png" alt="my-img" /></div>
+        <div class="my-info-real">
+          <span>작성한 리뷰 수 : </span>
+          <span>보유 포인트 : </span>
+        </div>
+      </div>
+      <div class="bottom"></div>
+      <ul id="list"></ul>
+    </div>
+    <script src="search.js"></script>
+    <div class="default-black">default</div>
+  </body>
+</html>
