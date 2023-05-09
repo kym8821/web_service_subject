@@ -88,11 +88,11 @@
 
 # 4. 프로젝트 설치 및 실행 방법
 
-### (1). 데이터베이스 import 하기
+## (1). 데이터베이스 import 하기
 
-#### [1]. MySQL Workbench 다운로드
+### [1]. MySQL Workbench 다운로드
 
-#### [2]. 새로운 connection 생성
+### [2]. 새로운 connection 생성
 
 - connection Name : restaurant
 - Hostname : 127.0.0.1
@@ -100,14 +100,48 @@
 - password : 1234
 - Default Schema : mydb
 
-#### [3]. Navigator -> Data Import/Restore 에서 데이터 import
+### [3]. Navigator -> Data Import/Restore 에서 데이터 import
 
 - 프로젝트명(default : web_server_subject)/db 로 경로 지정
 - Select Database Objects to Import 에서 mydb에 import할 파일로 comment, liker, product, restaurant, web_user 선택
 - start import 실행
 
+## (2). 서버 실행하기
+
+- vscode 터미널 창에서 node ./js/server.js 실행
+- 서버 실행시 나오는 주소 ( http://127.0.0.1:3000 ) 로 이동
+- main.ejs가 실행되었다면 성공
+
 <br>
 
 # 5. 프로젝트 사용 방법
+
+### (1). 검색 기능
+
+- 메인 화면에서만 가능합니다.
+- 아직은 식당 이름만 검색 가능합니다.
+
+### (2). 리뷰 게시판
+
+- 매력적인 리뷰를 통해 식당에 접근할 수 있는 페이지입니다.
+- 리뷰 게시판 이동시 리뷰 목록 확인 가능합니다.
+- 리뷰 클릭시 해당 식당 정보 사이트로 이동합니다.
+
+### (3). 근처 식당
+
+- 식당 정보를 통해 해당 식당에 접근할 수 있는 페이지입니다.
+- 근처 식당 목록을 보여줍니다.
+- 식당 목록 클릭시 해당 식당 정보 사이트로 이동합니다.
+
+### (4). 포인트 영화관
+
+- 포인트로 대여 가능한 영화 목록을 확인할 수 있습니다.
+- 구매 기능은 아직 미구현입니다.
+
+### (5). 댓글 / 추천 기능
+ - 댓글 추천시 작성자가 포인트를 받습니다.
+ - 댓글은 한 식당에 하나만 작성 가능합니다.
+ - 미구현 : 댓글 추천한 사용자가 포인트를 받는 기능
+ - 미구현 : 댓글 수정 기능
 
 <br>
