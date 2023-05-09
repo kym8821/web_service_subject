@@ -78,10 +78,10 @@
 
 # 3. 개발 환경
 
-- javascript
 - html / css
-- Database : MySQL
-- Express
+- **Database** : MySQL
+- **Framework** : Express
+- javascript
 - ejs
 
 <br>
