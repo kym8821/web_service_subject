@@ -90,7 +90,21 @@
 
 ### (1). 데이터베이스 import 하기
 
-#### [1]
+#### [1]. MySQL Workbench 다운로드
+
+#### [2]. 새로운 connection 생성
+
+- connection Name : restaurant
+- Hostname : 127.0.0.1
+- username : root
+- password : 1234
+- Default Schema : mydb
+
+#### [3]. Navigator -> Data Import/Restore 에서 데이터 import
+
+- 프로젝트명(default : web_server_subject)/db 로 경로 지정
+- Select Database Objects to Import 에서 mydb에 import할 파일로 comment, liker, product, restaurant, web_user 선택
+- start import 실행
 
 <br>
 
