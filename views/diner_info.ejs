@@ -11,7 +11,7 @@
   <div class="basic-box-center">
     <div class="tool-bar">
       <a href="/">메인 화면으로</a>
-      <a href="/shop">포인트 상점</a>
+      <a href="/shop">포인트 영화관</a>
       <a href="/reviewTable">리뷰 게시판</a>
       <a href="/restaurant">근처 식당</a>
       <% if(login > 0){ %>
@@ -59,12 +59,15 @@
           <div class="comment-box">
             <div class="comment-author"><%= comment.author %></div>
             <div class="comment-content">
-              <div class="cc-title"><%= comment.title %></div>
+              <div class="cc-main-info">
+                <div class="cc-title"><%= comment.title %></div>
+                <div class="cc-prefered">추천수 : <%= comment.prefer %></div>
+              </div>
               <div class="cc-content"><%= comment.comments %></div>
               <% if(userid == comment.web_user_id){ %>
                 <form action="/deleteReview?cid=<%= comment.idcomment %>&&did=<%= diner_data.id %>" method="post" class="delete-comment"><button type="submit">리뷰 삭제</button></form>
               <% }else{ %>
-                <form action="/prefer?web_user_id=<%= comment.web_user_id %>&&restaurant_id=<%= diner_data.id %>" method="post"><button type="submit">추천</button></form>
+                <form action="/prefer?web_user_id=<%= comment.web_user_id %>&&restaurant_id=<%= diner_data.id %>&&idcomment=<%= comment.idcomment %>" method="post"><button type="submit">추천</button></form>
               <% } %>
             </div>
           </div>
