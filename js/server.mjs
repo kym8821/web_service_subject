@@ -10,7 +10,7 @@ import expressSession from "express-session";
 import bodyParser from 'body-parser';
 import serveStatic from 'serve-static';
 import { connect } from 'http2';
-import { dir } from 'console';
+import { dir, log } from 'console';
 
 const app = express(); // express Server
 
@@ -335,5 +335,10 @@ app.get("/mypage", (req,res)=>{
 
 app.get("/shop", (req, res)=>{
   const login = req.session.user?1:0;
-  return res.render("shop.ejs", {"login" : login}); 
-})
+  connection.query(`SELECT * FROM product`, (err, products)=>{
+    connection.query(`SELECT * FROM web_user WHERE id=${req.session.user.id}`, (err, users)=>{
+      const currnet_user = users[0];
+      return res.render("shop.ejs", {"products":products, "user":currnet_user, "login":login});
+    });
+  }); 
+});

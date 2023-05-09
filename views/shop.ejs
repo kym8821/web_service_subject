@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/shop.css">
   <title>Document</title>
 </head>
 <body>
@@ -21,6 +22,20 @@
       <% } %>
     </div>
   </div>
+
   <h1>포인트 상점</h1>
+
+  <% for(let i=0; i<products.length/3; i++){ %>
+    <div class="product-box-3">
+      <% for(let j=0; j<3; j++){ %>
+        <% if(i*3 + j >= products.length) break; %>
+        <div class="product-info">
+          <div class="product-name"> <%= products[i*3 + j].name %> </div>
+          <div class="product-price"> <%= products[i*3 + j].price %></div>
+          <div class="product-comment"> <%=products[i*3 + j].comment %></div>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
 </body>
 </html>
