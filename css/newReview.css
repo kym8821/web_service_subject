@@ -1,0 +1,203 @@
+@import url(reset.css);
+@import url(basic.css);
+@import url(tool-bar.css);
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body{
+  background-color: #f2f2f2;
+  font-family: 'SUITE-Regular';
+}
+
+.title{
+  text-align: center;
+
+  margin-top: 2rem;
+
+  font-size: 150%;
+  font-weight: bold;
+  color: #c73b5c;
+}
+
+.save-comment {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  left:15%;
+
+  width: 70vw;
+  height: 55vh;
+
+  background-color: #fff;
+  margin-top: 2rem;
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+}
+
+.comment-title{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+  left : 2%;
+
+  border: none;
+  margin-top : 4vh;
+
+  width: 30vw;
+  height: 11vh;
+}
+
+.comment-title > label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  right: 10vw;
+
+  width: 10vw;
+  height: 4vh;
+
+  margin-bottom: 1vh;
+
+  background-color: #c73b5c;
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  color: white;
+}
+
+.comment-title > input{
+  width: 100%;
+  height: 5vh;
+
+  border : none;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+}
+
+.comment-content{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+  left : 2%;
+
+  margin-top : 4vh;
+
+  width: 60vw;
+  height: 45vh;
+}
+
+.comment-content > label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  right: 25vw;
+
+  width: 10vw;
+  height: 4vh;
+  
+  margin-bottom: 1vh;
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  background-color: #c73b5c;
+
+  color: white;
+}
+
+.comment-content > input{
+  width: 100%;
+  height: 20vh;
+
+  border : none;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+}
+
+.save-button {
+  position: relative;
+  left : 2%;
+
+  width: 10vw;
+  height: 8vh;
+
+  margin : 3vh 0 3vh 0;
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+
+  background-color: #c73b5c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #ad344f;
+  transition: 0.3s;
+}
+
+.back-button{
+  position: relative;
+  left : 75vw;
+  
+  width: 10vw;
+  height: 5vh;
+
+  margin-top : 1.5vw;
+
+  background-color: #c73b5c;
+
+  border : none;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+
+  color: white;
+  font-weight: bold;
+}
+
+.back-button:hover{
+  background-color: #ad344f;
+}

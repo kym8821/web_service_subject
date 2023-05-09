@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reviewTable.css" type="text/css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="basic-box-center">
+    <div class="tool-bar">
+      <a href="/">메인 화면으로</a>
+      <a href="/shop">포인트 상점</a>
+      <a href="/reviewTable">리뷰 게시판</a>
+      <a href="/restaurant">근처 식당</a>
+      <% if(login > 0){ %>
+      <a href="/mypage">내 정보</a>
+      <a href="/logout">로그아웃</a>
+      <% }else{ %>
+      <a href="/login">로그인</a>
+      <% } %>
+    </div>
+  </div>
+
+  <h1 class="title">리뷰 게시판</h1>
+  <div class="review-list-box">
+    <p class="review-list-title"># 리뷰 목록 </p>
+    <% for(var i=0; i<10; i++){ %>
+      <% if( i>=data.length ) {break;} %>
+      <a href="/diner_info/<%= data[i].restaurant_id %>" class="review-list">
+        <div class="review-list-content">
+          <div class="rlc-diner"><%= data[i].restaurant %></div>
+          <div class="rlc-author">작성자 : <%= data[i].author %></div>
+          <div class="rlc-title">제목 : <%= data[i].title %></div>
+          <hr class="rlc-hr">
+          <div class="rlc-content"><%= data[i].comments %></div>
+        </div>
+      </a>
+    <% } %>
+  </div>
+</body>
+</html>

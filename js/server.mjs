@@ -63,11 +63,12 @@ connection.connect((err) => {
 });
 
 app.get('/', (req, res) =>{
+  const login = req.session.user?1:0;
   connection.query(`SELECT * FROM restaurant WHERE grade>=4`, (err1, prefer)=>{
     connection.query(`SELECT * FROM restaurant`, (err2, near)=>{
       connection.query(`SELECT * FROM comment`, (err3, review)=>{
-        if(req.session.user) return res.render("main.ejs", {"user" : req.session.user.name, "review":review, "near":near, "prefer":prefer});
-        else return res.render("main.ejs", {"user" : undefined, "review":review, "near":near, "prefer":prefer});
+        if(req.session.user) return res.render("main.ejs", {"user" : req.session.user.name, "review":review, "near":near, "prefer":prefer, "login":login});
+        else return res.render("main.ejs", {"user" : undefined, "review":review, "near":near, "prefer":prefer, "login":login});
       })
     })
   })
@@ -76,15 +77,17 @@ app.get('/', (req, res) =>{
 app.get('/search', (req, res) =>{
   res.header("Access-Control-Allow-Origin", "*");
   const query = req.body.name || req.query.name;
+  const login = (req.session.user ? 1:0);
   const sql = `SELECT * FROM restaurant WHERE name LIKE ?`;
   const values = [[query]];
   connection.query(sql, values, (err, data) => {
-    return res.render("restaurant.ejs", {"data":data});
+    return res.render("restaurant.ejs", {"data":data, "login" : login});
   });
 });
 
 app.get('/login', (req, res) => {
-  return res.render("login.ejs", {"success":1});
+  if(req.session.user) res.redirect('/');
+  return res.render("login.ejs", {"success":1, "login" : 0});
 });
 
 app.post("/loginProcess", (req, res) => {
@@ -119,13 +122,13 @@ app.post("/loginProcess", (req, res) => {
       connection.query(`SELECT * FROM restaurant WHERE grade>=4`, (err1, prefer)=>{
         connection.query(`SELECT * FROM restaurant`, (err2, near)=>{
           connection.query(`SELECT * FROM comment`, (err3, review)=>{
-            return res.render("main.ejs", {"user" : req.session.user.name, "review":review, "near":near, "prefer":prefer});
+            return res.redirect("/");
           })
         })
       })
 
     } else{
-      return res.render("login.ejs", {"success":0});
+      return res.render("login.ejs", {"success":0, "login":0});
     }
   })
 });
@@ -134,7 +137,7 @@ app.get('/signup', (req,res)=>{
   if(req.session.user){
     return res.redirect("/");
   }
-  return res.render("signup.ejs", {"error":0});
+  return res.render("signup.ejs", {"error":0, "login":0});
 });
 
 app.post('/signup', (req,res)=>{
@@ -147,10 +150,10 @@ app.post('/signup', (req,res)=>{
   if(req.session.user) return res.redirect("/");
   connection.query(`SELECT * FROM web_user WHERE userid=?`, [id], (err, data)=>{
     if(err) console.log("회원가입 유저 조회중 오류 발생!" + err);
-    if(data.length > 0) return res.render("signup.ejs", {"error":1});
+    if(data.length > 0) return res.render("signup.ejs", {"error":1, "login":0});
     connection.query(`INSERT INTO web_user(userid, passwd, name, email) VALUES (?,?,?,?)`, [id, password, name, email], (err, data)=>{
       if(err) console.log("회원가입 정보 저장 중 오류 발생 : " + err);
-      return res.render("login.ejs", {"success":1});
+      return res.render("login.ejs", {"success":1, "login":0});
     });
   });
 });
@@ -166,78 +169,62 @@ app.get("/logout", (req, res) => {
         return;
       }
       console.log("세션이 삭제됐습니다.");
-
-      connection.query(`SELECT * FROM restaurant WHERE grade>=4`, (err1, prefer)=>{
-        connection.query(`SELECT * FROM restaurant`, (err2, near)=>{
-          connection.query(`SELECT * FROM comment`, (err3, review)=>{
-            return res.render("main.ejs", {"user" : undefined, "review":review, "near":near, "prefer":prefer});
-          })
-        })
-      })
-
+      return res.redirect("/");
     });
   } else {
     console.log("로그인 되어있지 않습니다.");
-    return res.redirect('/');
+    return res.redirect('/login');
   }
 });
 
 app.get('/restaurant', (req, res) => {
   const sql = `SELECT * FROM restaurant`;
+  const login = req.session.user?1:0;
   connection.query(sql, (err, data) => {
-    return res.render('restaurant.ejs', {"data":data});
+    return res.render('restaurant.ejs', {"data":data, "login":login});
   });
 });
 
+app.get('/reviewTable', (req,res)=>{
+  const sql = `SELECT * FROM comment`;
+  const login = req.session.user?1:0;
+  connection.query(sql, (err, data) =>{
+    return res.render('reviewTable.ejs', {"data":data, "login":login});
+  })
+})
+
 app.get('/diner_info/:id', (req, res) => {
-  console.log("about detail");
+  console.log("\nabout detail");
   const id = req.params.id || req.body.id;
-  var is_login = 0;
-  if(req.session.user) is_login=1;
+  const login = req.session.user?1:0;
   console.log(id);
   if (isNaN(id)) {
     return res.status(400).send('Invalid ID');
   }
   const sql = `SELECT * FROM restaurant WHERE id=${id}`;
   connection.query(sql, (err, data) => {
-    console.log("restaurant : " + data);
     if(err || data.length==0){
       console.log("cant find data..." + err);
     }
-    const comments = `SELECT * FROM comment WHERE restaurant_id=${data[0].id}`;
+    console.log("restaurant : " + data[0].name);
+    const comments = `SELECT * FROM comment WHERE restaurant_id=${id}`;
     connection.query(comments, (err2, comment)=>{
+      if(err2){
+        console.log("find error while searching on comments : " + err2);
+      }
+      console.log(comment[0]);
       if(req.session.user){
-        return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":req.session.user.id});
+        return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":req.session.user.id, "login":login});
       }
       console.log("not login yet");
-      return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":undefined});
+      return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":undefined, "login":login});
     });
   });
 });
 
-// app.get('/newReview/:id', (req,res)=>{
-//   const id = req.params.id;
-//   const sql = `SELECT * FROM restaurant WHERE id=${id}`;
-//   connection.query(`SELECT * FROM comment WHERE web_user_id=${req.session.user.id} AND restaurant_id=${id}`, (err, data)=>{
-//     console.log(data);
-//     if(err){
-//       // 에러 처리
-//       console.log(err);
-//       return res.status(500).send('Internal Server Error');
-//     }
-//     if(data.length != 0 ){
-//       console.log("already exist!");
-//       return res.redirect("restaurant.ejs");
-//     }
-//   })
-//   connection.query(sql, (err, data) =>{
-//     return res.render('newReview.ejs',{"diner_data" : data[0]});
-//   })
-// });
-
 app.get('/newReview/:id', (req,res)=>{
   const id = req.params.id;
-  const sql = `SELECT * FROM restaurant WHERE id=${id}`;
+  const login = req.session.user?1:0;
   
   connection.query(`SELECT * FROM comment WHERE web_user_id=${req.session.user.id} AND restaurant_id=${id}`, (err, data)=>{
     if(err){
@@ -248,18 +235,17 @@ app.get('/newReview/:id', (req,res)=>{
     
     console.log(data);
     if(data.length != 0 ){
-      console.log("already exist!");
       return res.redirect(`/diner_info/${id}`);
     }
     
-    connection.query(sql, (err, data) =>{
+    connection.query(`SELECT * FROM restaurant WHERE id=${id}`, (err, data) =>{
       if(err){
         // 에러 처리
         console.log(err);
         return res.status(500).send('Internal Server Error');
       }
       
-      return res.render('newReview.ejs',{"diner_data" : data[0]});
+      return res.render('newReview.ejs',{"diner_data" : data[0], "login":login});
     });
   });
 });
@@ -269,28 +255,29 @@ app.post('/saveComment/:id', (req, res)=>{
   const id = req.params.id;
   const title = req.body.title;
   const content = req.body.content;
+  const login = req.session.user?1:0;
   console.log(id + " " + title + " " + content); 
 
-  var sql = `INSERT INTO comment (title, comments, author, restaurant_id, web_user_id) VALUES ?`;
-  var values = [[title, content, req.session.user.name, id, req.session.user.id]];
-  connection.query(sql, [values], (err, data) =>{
-    if(err) throw err;
-    console.log("success : " + data);
-  });
-
-  const sql2 = `SELECT * FROM restaurant WHERE id=${id}`;
-  connection.query(sql2, (err, data) => {
-    const comments = `SELECT * FROM comment WHERE restaurant_id=${data[0].id}`;
-    connection.query(comments, (err2, comment)=>{
-      if(req.session.user) return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":req.session.user.id});
-      return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":undefined});
+  connection.query(`SELECT * FROM restaurant WHERE id=${id}`,(err, res_name)=>{
+    console.log("restaurant_name : " + res_name);
+    var sql = `INSERT INTO comment (title, comments, author, restaurant, restaurant_id, web_user_id) VALUES ?`;
+    var values = [[title, content, req.session.user.name, res_name[0].name, id, req.session.user.id]];
+    connection.query(sql, [values], (err, data) =>{
+      if(err){
+        console.log("err while saving comment : " + err);
+      }
+      if(err) throw err;
+      console.log("success : " + data);
     });
   });
+
+  return res.redirect(`/diner_info/${id}`);
 });
 
 app.post('/deleteReview', (req, res)=>{ //id : 리뷰의 아이디
   const cid = req.query.cid;
   const did = req.query.did;
+  const login = req.session.user?1:0;
   console.log(cid + " " + did);
   var sql = `DELETE FROM comment WHERE idcomment=?`;
   var values = [[cid]];
@@ -300,11 +287,53 @@ app.post('/deleteReview', (req, res)=>{ //id : 리뷰의 아이디
 
   var sql2 = `SELECT * FROM restaurant WHERE id=?`;
   var values2 = [[did]];
-  connection.query(sql2, values2, (err, data)=>{
-    const comments = `SELECT * FROM comment WHERE restaurant_id=${data[0].id}`;
-    connection.query(comments, (err2, comment)=>{
-      if(req.session.user) return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":req.session.user.id});
-      return res.render(`diner_info.ejs`, {"diner_data":data[0], "comments":comment, "userid":undefined});
+  return res.redirect(`/diner_info/${did}`);
+});
+
+app.post('/prefer', (req, res) =>{
+  const login = req.session.user?1:0;
+  let web_user_id = req.query.web_user_id || req.body.web_user_id;
+  let restaurant_id = req.query.restaurant_id || req.body.restaurant_id;
+  console.log("\nprefer process : " + web_user_id + " " + restaurant_id)
+  connection.query(`SELECT * FROM liker WHERE liker=?`,[req.session.user.userid], (err, data)=>{
+    if(err) console.log("err ooccured while searching liker" + err);
+    if(data.length>0) return res.redirect(`/diner_info/${restaurant_id}`);
+    console.log("not commented yet")
+    connection.query(`UPDATE web_user SET point = point+10, prefer=prefer+1 WHERE id=${web_user_id}`, (err,data)=>{
+      if(err) console.log("update data failed : " + err);
+      console.log(`${req.session.user.name} point +=10`);
+      connection.query(`SELECT * FROM comment WHERE web_user_id=${web_user_id} AND restaurant_id=${restaurant_id}`, (err, data)=>{
+        if(err){
+          console.log("err occured while finding data in comment" + err);
+        }
+        console.log("comment : " + data[0]);
+        if(data.length==0){
+          console.log("no data about comment");
+        }
+        const idcomment = data[0].idcomment;
+        connection.query(`INSERT INTO liker(liker, web_user_id, restaurant_id, idcomment) VALUES (?,?,?,?)`, [req.session.user.userid, Number(web_user_id), Number(restaurant_id), Number(idcomment)]);
+        connection.query(`UPDATE comment SET prefer=prefer+1 WHERE web_user_id=${web_user_id} AND restaurant_id=${restaurant_id}`);
+      })
+      return res.redirect(`/diner_info/${restaurant_id}`);
     });
   })
-});
+})
+
+app.get("/mypage", (req,res)=>{
+  const login = req.session.user?1:0;
+  let id = req.session.user.id;
+  if(req.session.user){
+    connection.query(`SELECT * FROM web_user WHERE id=${id}`,(err,user)=>{
+      connection.query(`SELECT * FROM comment WHERE web_user_id=${id}`, (err,comment)=>{
+        return res.render("mypage.ejs", {"user":user, "comment":comment, "login":login});  
+      });
+    });
+  }else{
+    return res.redirect('/login');
+  }
+})
+
+app.get("/shop", (req, res)=>{
+  const login = req.session.user?1:0;
+  return res.render("shop.ejs", {"login" : login}); 
+})

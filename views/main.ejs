@@ -13,16 +13,15 @@
     <% } %>
     <div class="basic-box-center">
       <div class="tool-bar">
-        <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
-        <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+        <a href="/">메인 화면으로</a>
+        <a href="/shop">포인트 상점</a>
+        <a href="/reviewTable">리뷰 게시판</a>
         <a href="/restaurant">근처 식당</a>
-        <% if( user==undefined ){ %>
+        <% if(login > 0){ %>
+        <a href="/mypage">내 정보</a>
+        <a href="/logout">로그아웃</a>
+        <% }else{ %>
         <a href="/login">로그인</a>
-        <% } else { %>
-        <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
-        <form action="/logout">
-          <button type="submit" class="logout">로그아웃</button>
-        </form>
         <% } %>
       </div>
     </div>
@@ -65,8 +64,8 @@
                 <div> 글쓴이 : <%= review[i].author %></div>
                 <div> 제목 : <%= review[i].title %> </div>
               </div>
-              <hr style="
-              position:relative;
+              <hr style=
+              "position:relative;
               top:2vh;
               height:1px;
               color: rgb(177, 177, 177);">
@@ -93,18 +92,7 @@
           <% } %>
         </div>
       </div>
-
-      <div class="my-info">
-        <div class="my-img"><img src="../img/icon.png" alt="my-img" /></div>
-        <div class="my-info-real">
-          <span>작성한 리뷰 수 : </span>
-          <span>보유 포인트 : </span>
-        </div>
-      </div>
-      <div class="bottom"></div>
-      <ul id="list"></ul>
     </div>
-    <script src="search.js"></script>
     <div class="default-black">
       default
     </div>

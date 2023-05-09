@@ -8,13 +8,17 @@
   font-style: normal;
 }
 
+*{
+  font-family: 'SUITE-Regular';
+}
+
 .restaurant-info{
   display: flex;
   flex-direction: column;
   gap : 2vh;
 
   position: relative;
-  left : 3%;
+  left : 3rem;
   
   font-family: 'SUITE-Regular';
 }
@@ -31,7 +35,213 @@
   font-size: 150%;
 }
 
+.other-site{
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+
+  margin : 2vh 0 2vh 0;
+
+  width: 100vh;
+  height: 7%;
+  position: relative;
+  left: 3rem;
+}
+
+.other-site > a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 22%;
+  height: 100%;
+
+  background-color: #dedede;
+  
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+}
+
+.other-site-img{
+  width: 94%;
+  height: 84%;
+
+  background-color: white;
+
+  padding: 1%;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+}
+
+.naver:hover{
+  background-color: #1EC800;
+  transition: 0.3s;
+}
+
+.google:hover{
+  background-color:#4285F4;
+  transition: 0.3s;
+}
+
 .restaurant-info > hr{
   width: 100%;
-  margin: 2vh 0 2vh 0;
+  margin: 2em 0 2em 0;
+}
+
+.comment-start-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1%;
+
+  margin: 2% 0 0 0;
+
+  width: 100rem;
+  height: 5%;
+  background-color: #dca9b5;
+
+  font-family: 'SUITE-Regular';
+}
+
+.comment-start-box > p{
+  position: relative;
+  left: 2%;
+}
+
+.comment-tools{
+  display: flex;
+  gap: 4%;
+
+  position: relative;
+  right: 2%;
+
+  width: 20%;
+}
+
+.comment-tools > a{
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+}
+
+.comment-tools > a:hover{
+  color: rgb(255, 232, 232);
+  transition: 0.3s;
+}
+
+.comment-background{
+  display: flex;
+  flex-direction: column;
+  background-color: #efefef;
+  height: 100%;
+}
+
+.no-comment{
+  display: flex;
+  align-items: center;
+  
+  position: relative;
+  left : 2rem;
+  top : 2vh;
+
+  height: 2rem;
+
+  font-family: 'SUITE-Regular';
+  font-size: 140%;
+  font-weight: bold;
+}
+
+.comment-divisor{
+  display: flex;
+  flex-direction: column;
+
+  margin : 2% 0 0 0;
+
+  width: 100%;
+  height: 15rem;
+}
+
+.comment-box{
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+
+  width: 80rem; 
+  height: 100%;
+
+  margin: 0 0 0 2em;
+}
+
+.comment-author{
+  width: 6%;
+  height: 90%; 
+
+  font-weight: bold;
+  font-size: 140%;
+}
+
+.comment-content{
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+
+  position: relative;
+
+  width: 70%;
+  height: 85%;
+
+  padding : 1.5%;
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.49);
+
+  background-color: white;
+
+  line-height: 1.4em;
+}
+
+.cc-title{
+  height: 20%;
+  
+  font-size: 120%;
+}
+
+.cc-content{
+  height: 60%;
+  
+  overflow-x: auto;
+  font-size: 90%;
+}
+
+.delete-comment{
+  height: 10%;
+
+  position: relative;
+  left : 90%;
+}
+
+.delete-comment > button{
+  border : none;
+
+  background-color: rgb(255, 255, 255);
+
+  font-weight: bold;
+}
+
+.delete-comment > button:hover{
+  color: rgb(255, 0, 0);
+}
+
+.divisor{
+  width: 100%;
+  height: 1px;
+
+  margin : 0 0 2% 0;
 }

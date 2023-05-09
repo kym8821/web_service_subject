@@ -11,10 +11,15 @@
     <div class="basic-box-center">
       <div class="tool-bar">
         <a href="/">메인 화면으로</a>
-        <a href="http://127.0.0.1:3000/mypage.html">포인트 상점</a>
-        <a href="http://127.0.0.1:3000/reviews.html">리뷰 게시판</a>
+        <a href="/shop">포인트 상점</a>
+        <a href="/reviewTable">리뷰 게시판</a>
         <a href="/restaurant">근처 식당</a>
-        <a href="http://127.0.0.1:3000/mypage.html">내 정보</a>
+        <% if(login > 0){ %>
+        <a href="/mypage">내 정보</a>
+        <a href="/logout">로그아웃</a>
+        <% }else{ %>
+        <a href="/login">로그인</a>
+        <% } %>
       </div>
     </div>
     

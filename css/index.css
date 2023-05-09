@@ -90,7 +90,7 @@
 
 .search-txt{
   position: relative;
-  left: 3%;
+  right: 7%;
 
   width: 70%;
   height: 100%;
@@ -178,7 +178,7 @@
   gap: 1vh;
 
   width: 30%;
-  height: 70%;
+  height: 80%;
   background-color: rgb(255, 255, 255);
 
   border-radius: 40px 40px 40px 40px;
@@ -190,6 +190,7 @@
   -moz-box-shadow: 5px 5px 41px 0px rgba(0,0,0,0.49);
 
   text-decoration: none;
+  font-family: 'SUITE-Regular';
 }
 
 .content-box-title{
@@ -212,7 +213,13 @@
   top: 2vh;
 
   color: black;
-  margin: 5% 0 0 0;
+  margin: 5% 0 10% 0;
+
+  width: 90%;
+  height: 60%;
+  overflow-y:auto;
+
+  line-height: 130%;
 }
 
 .main-tools-img{

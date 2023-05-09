@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/mypage.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="basic-box-center">
+    <div class="tool-bar">
+      <a href="/">메인 화면으로</a>
+      <a href="/shop">포인트 상점</a>
+      <a href="/reviewTable">리뷰 게시판</a>
+      <a href="/restaurant">근처 식당</a>
+      <% if(login > 0){ %>
+      <a href="/mypage">내 정보</a>
+      <a href="/logout">로그아웃</a>
+      <% }else{ %>
+      <a href="/login">로그인</a>
+      <% } %>
+    </div>
+  </div>
+  <h1>내 정보</h1>
+  <div class='my-info-box'>
+    <div>이름 : <%= user[0].name %></div>
+    <div>보유 포인트 : <%= user[0].point %> 포인트</div>
+    <div>작성한 리뷰수 : <%= comment.length %> 개</div>
+    <div>받은 추천수 : <%= user[0].prefer %> 개</div>
+  </div>
+  <div class="my-reviews">
+    <% for(i=0; i<3; i++){ %>
+    <% if(comment.length <= i) break;%>
+    <a class="review-box" href="/diner_info/<%= comment[i].restaurant_id %>">
+      <div class="name-prefer">
+        <div class='diner-name'><%= comment[i].restaurant %></div>
+        <div class="diner-prefer">추천수 : <%= comment[i].prefer %></div>
+      </div>
+      <div class='diner-title'><%= comment[i].title %></div>
+      <hr style="height:1px;width: 100%;margin:5% 0 5% 0;">
+      <div class='diner-comments'><%= comment[i].comments %></div>  
+    </a>
+    <% } %>
+  </div>
+</body>
+</html>

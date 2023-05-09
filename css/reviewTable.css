@@ -1,0 +1,105 @@
+@import url(./basic.css);
+@import url(./tool-bar.css);
+@import url(./reset.css);
+
+.title{
+  margin: 5% 0 3% 0;
+
+  color: #c73b5c;
+
+  text-align: center;
+  font-size: 300%;
+  font-weight: bold;
+  font-family: 'SUITE-Regular';
+}
+
+.review-list-box{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5vh;
+
+  position: relative;
+  left: 16%;
+
+  width: 70%;
+  background-color: rgb(255, 255, 255);
+
+  border: thick solid #631d2d;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  padding: 0 0 5vh 0;
+}
+
+.review-list-title{
+  position: relative;
+  top: 2.5vh;
+  
+  color: #000000;
+  font-weight: bold;
+  font-size: 200%;
+  font-family: 'SUITE-Regular';
+
+  margin: 3% 0 3% 0;
+}
+
+.review-list{
+  display: flex;
+  flex-direction: row;
+  
+  width: 88%;
+  height: 30vh;
+
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+
+  box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -webkit-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+  -moz-box-shadow: 10px 10px 41px 0px rgba(0,0,0,0.49);
+
+  text-decoration: none;
+}
+
+.review-list-content{
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+
+  position: relative;
+  top: 6%;
+  left: 4%;
+
+  width: 90%;
+  height: 90%;
+  font-family: 'SUITE-Regular';
+}
+
+.rlc-diner{
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.rlc-author{
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.rlc-title{
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.rlc-content{
+  font-size: 90%;
+  line-height: 140%;
+  overflow-y:auto;
+}
+
+.rlc-hr{
+  width: 100%;
+}
