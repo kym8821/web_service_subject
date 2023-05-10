@@ -93,7 +93,7 @@
 
 ### [1]. MySQL Workbench 다운로드
 
-### [2]. 새로운 connection 생성
+### [2]. 새로운 connection 생성 + 서버와 연결
 
 - connection Name : restaurant
 - Hostname : 127.0.0.1
@@ -109,6 +109,7 @@
 
 ## (2). 서버 실행하기
 
+- node.js 설치 및 연결
 - vscode 터미널 창에서 node ./js/server.js 실행
 - 서버 실행시 나오는 주소 ( http://127.0.0.1:3000 ) 로 이동
 - main.ejs가 실행되었다면 성공
