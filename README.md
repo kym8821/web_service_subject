@@ -111,7 +111,7 @@
 
 - github에서 프로젝트 clone해오기
 - node.js 설치 및 연결
-- vscode 터미널 창에 들어가서 홈 디렉터리에서 node ./js/server.mjs 실행
+- vscode 터미널 창에 들어가서 clone해온 프로젝트의 홈 디렉터리에서 node ./js/server.mjs 실행
 - 서버 실행시 나오는 주소 ( http://127.0.0.1:3000 ) 로 이동
 - main.ejs가 실행되었다면 성공
 
